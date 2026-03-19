@@ -268,8 +268,8 @@ int main() {
 
     srand(time(NULL));
 
-    int sizes[] = {1000,2000,5000,10000,20000};
-    int num_sizes = 5;
+    int sizes[] = {1000,2000,3000,4000,5000,6000,7000,8000,10000};
+    int num_sizes = 9;
     char *inputTypes[] = {"Random","Sorted","Reverse"};
 
     /* -------- RUN EXPERIMENT 5 TIMES -------- */
@@ -280,7 +280,7 @@ int main() {
         sprintf(filename, "results_run%d.csv", run);
 
         FILE *file = fopen(filename,"w");
-        fprintf(file,"Algorithm,n,InputType,TimeMicroseconds,Comparisons\n");
+        fprintf(file,"Algorithm,N,InputType,Time,Comparisons\n");
 
         for(int s=0;s<num_sizes;s++){
 
@@ -306,7 +306,7 @@ int main() {
                 clock_t end = clock();
                 fprintf(file,"Merge,%d,%s,%lf,%lld\n",
                         n,inputTypes[t],
-                        ((double)(end-start)/CLOCKS_PER_SEC)*1000000,
+                        ((double)(end-start)/CLOCKS_PER_SEC),
                         comparisons);
 
                 /* Quick (3 pivot types) */
@@ -324,7 +324,7 @@ int main() {
 
                     fprintf(file,"%s,%d,%s,%lf,%lld\n",
                             name,n,inputTypes[t],
-                            ((double)(end-start)/CLOCKS_PER_SEC)*1000000,
+                            ((double)(end-start)/CLOCKS_PER_SEC),
                             comparisons);
                 }
 
